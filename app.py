@@ -5,28 +5,44 @@ import os
 app = Flask(__name__)
 
 API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
-API_TOKEN = os.getenv("HUGGING_FACE_TOKEN")  # Gets token from environment variable
+API_TOKEN = os.getenv("HUGGING_FACE_TOKEN") #Hugging face API
 
 def coffee_bot_response(user_input):
     user_input = user_input.strip().lower()
     
+    # Add context to steer BlenderBot toward coffee
+    context = "You are a coffee-ordering bot. Help the user order a coffee (e.g., latte, espresso, cappuccino) and ask for size if needed. Keep it fun!"
+    full_input = f"{context} User says: {user_input}"
+
     # Call Hugging Face API
     headers = {"Authorization": f"Bearer {API_TOKEN}"}
-    payload = {"inputs": user_input}
+    payload = {"inputs": full_input}
+    print(f"API Token: {API_TOKEN}")
     response = requests.post(API_URL, headers=headers, json=payload)
-    bot_reply = response.json()[0]["generated_text"] if response.ok else "Oops, something broke!"
+    print(f"Status Code: {response.status_code}")
+    print(f"Response Text: {response.text}")
+    
+    # Get BlenderBot's reply or fallback
+    blender_reply = response.json()[0]["generated_text"] if response.ok else "Oops, something broke!"
 
-    # Add coffee-specific logic
-    if "coffee" in user_input or "latte" in user_input or "espresso" in user_input:
-        bot_reply += " Ooh, coffee time! What kind? (latte, espresso, etc.)"
+    # Custom coffee logic takes priority
+    if "hi" in user_input or "hello" in user_input:
+        bot_reply = "Hey there! I’m Coffee Bot. What’s your name or what coffee can I get started for you?"
+    elif "name is" in user_input:
+        name = user_input.split("is")[-1].strip()
+        bot_reply = f"Nice to meet you, {name}! What coffee do you want? (latte, espresso, cappuccino)"
     elif any(x in user_input for x in ["latte", "espresso", "cappuccino"]):
         coffee_type = next(x for x in ["latte", "espresso", "cappuccino"] if x in user_input)
-        bot_reply += f" Cool, a {coffee_type}! What size? (small, medium, large)"
+        bot_reply = f"Cool, a {coffee_type}! What size? (small, medium, large)"
     elif any(x in user_input for x in ["small", "medium", "large"]):
         size = next(x for x in ["small", "medium", "large"] if x in user_input)
-        bot_reply += f" Your {size} coffee is brewing—enjoy!"
+        bot_reply = f"Your {size} coffee is brewing—enjoy! Anything else?"
     elif "no" in user_input or "thanks" in user_input:
-        bot_reply += " Enjoy your coffee! Come back anytime!"
+        bot_reply = "Enjoy your coffee! Come back anytime!"
+    else:
+        # Use BlenderBot only for non-coffee chit-chat
+        bot_reply = blender_reply if response.ok else "Hmm, not sure what you mean. Want a coffee?"
+
     return bot_reply
 
 @app.route("/", methods=["GET", "POST"])
