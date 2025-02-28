@@ -13,13 +13,25 @@
                 <p><strong>You:</strong> {{ user_input }}</p>
                 <p><strong>Bot:</strong> {{ bot_reply }}</p>
             {% else %}
-                <p><strong>Bot:</strong> Hi! I’m Coffee Bot. Say something to start!</p>
+                <p><strong>Bot:</strong> {{ bot_reply }}</p>
             {% endif %}
         </div>
-        <form method="POST">
-            <input type="text" name="message" placeholder="Type here..." required autocomplete="off">
+        <form method="POST" id="chatForm">
+            <input type="text" name="message" placeholder="Type here..." required autocomplete="off" id="messageInput">
             <button type="submit">Send</button>
         </form>
     </div>
+    <script>
+        // Auto-focus the input field when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('messageInput').focus();
+        });
+
+        // Optional: Refocus after form submission (if needed, though reload handles it)
+        document.getElementById('chatForm').addEventListener('submit', function(event) {
+            // Since Flask reloads, this is mostly for future AJAX use
+            setTimeout(() => document.getElementById('messageInput').focus(), 100);
+        });
+    </script>
 </body>
 </html>

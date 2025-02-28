@@ -2,23 +2,23 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #e6d5b8; /* Light coffee cream */
     margin: 0;
-    padding: 20px;
+    padding: 25px; /* Increased from 20px */
     background-image: url('https://www.transparenttextures.com/patterns/coffee-beans.png');
     background-repeat: repeat;
-    display: flex; /* Center the container */
+    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 600px;
-    width: 90%; /* Flexible width for smaller screens */
+    max-width: 720px; /* Increased from 600px */
+    width: 90%; /* Flexible width */
     margin: 0 auto;
     background: #fffaf0; /* Warm parchment */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(111, 78, 55, 0.3);
+    padding: 25px; /* Increased from 20px */
+    border-radius: 18px; /* Slightly larger */
+    box-shadow: 0 5px 20px rgba(111, 78, 55, 0.3); /* Deeper shadow */
     border: 2px solid #8b5e3c; /* Espresso brown border */
 }
 
@@ -27,42 +27,44 @@ h1 {
     color: #4b2e1a; /* Dark roast brown */
     font-family: 'Courier New', monospace;
     text-shadow: 1px 1px 2px #d4a017; /* Golden coffee glow */
-    font-size: 2em; /* Scalable size */
-    margin: 10px 0;
+    font-size: 2.4em; /* Increased from 2em */
+    margin: 12px 0; /* Increased from 10px */
 }
 
 .chatbox {
     border: 1px dashed #d4a017; /* Coffee drip gold */
-    padding: 15px;
-    min-height: 200px;
-    max-height: 50vh; /* Limit height, scroll if needed */
-    margin-bottom: 15px;
+    padding: 20px; /* Increased from 15px */
+    min-height: 250px; /* Increased from 200px */
+    max-height: 65vh; /* Larger height limit */
+    margin-bottom: 20px; /* Increased from 15px */
     background: #f5f2e9; /* Latte foam */
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 1.5;
+    border-radius: 10px; /* Slightly larger */
+    font-size: 18px; /* Increased from 16px */
+    line-height: 1.7; /* More readable spacing */
     overflow-y: auto;
 }
 
 input {
-    padding: 8px;
+    padding: 12px; /* Increased from 10px */
     width: 65%; /* Flexible for desktop */
     border: 2px solid #6f4e37;
-    border-radius: 5px;
+    border-radius: 6px; /* Slightly larger */
     background: #fffaf0;
     color: #4b2e1a;
-    box-sizing: border-box; /* Include padding in width */
+    box-sizing: border-box;
+    font-size: 18px; /* Increased from 16px */
 }
 
 button {
-    padding: 8px 15px;
+    padding: 12px 25px; /* Increased from 10px 20px */
     background: #6f4e37; /* Rich espresso */
     color: #fffaf0; /* Creamy text */
     border: none;
-    border-radius: 5px;
+    border-radius: 6px; /* Slightly larger */
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease;
+    font-size: 18px; /* Increased from 16px */
 }
 
 button:hover {
@@ -71,39 +73,49 @@ button:hover {
 }
 
 p {
-    margin: 10px 0;
-    padding: 5px;
-    border-radius: 5px;
+    margin: 15px 0; /* Increased from 12px */
+    padding: 10px; /* Increased from 8px */
+    border-radius: 6px; /* Slightly larger */
+    font-size: 18px; /* Increased from 16px */
 }
 
 p strong {
     color: #6f4e37; /* Coffee accent */
 }
 
-/* Mobile responsiveness */
+/* Mobile responsiveness (scaled up) */
 @media (max-width: 600px) {
     .container {
-        width: 95%; /* Nearly full width on small screens */
-        padding: 15px;
+        width: 95%; /* Nearly full width */
+        padding: 20px; /* Increased from 15px */
     }
 
     h1 {
-        font-size: 1.5em; /* Smaller header */
+        font-size: 2.2em; /* Increased from 1.8em */
     }
 
     .chatbox {
-        min-height: 150px; /* Shorter chatbox */
-        max-height: 40vh; /* Adjust for mobile */
-        font-size: 14px; /* Slightly smaller text */
+        min-height: 300px; /* Increased from 250px */
+        max-height: 70vh; /* More room */
+        font-size: 20px; /* Increased from 18px */
+        padding: 25px; /* Increased from 20px */
     }
 
     input {
-        width: 100%; /* Full width on mobile */
-        margin-bottom: 10px; /* Space before button */
+        width: 100%; /* Full width */
+        padding: 14px; /* Increased from 12px */
+        font-size: 20px; /* Increased from 18px */
+        margin-bottom: 12px; /* Increased from 10px */
     }
 
     button {
-        width: 100%; /* Full width button */
-        padding: 10px; /* Bigger tap target */
+        width: 100%; /* Full width */
+        padding: 14px 25px; /* Increased from 12px 20px */
+        font-size: 20px; /* Increased from 18px */
+    }
+
+    p {
+        font-size: 20px; /* Match chat size */
+        padding: 12px; /* Increased from 10px */
     }
 }
