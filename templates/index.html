@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Coffee Bot ☕</h1>
+        <div class="chatbox">
+            {% if user_input %}
+                <p><strong>You:</strong> {{ user_input }}</p>
+                <p><strong>Bot:</strong> {{ bot_reply }}</p>
+            {% else %}
+                <p><strong>Bot:</strong> Hi! I’m Coffee Bot. Say something to start!</p>
+            {% endif %}
+        </div>
+        <form method="POST">
+            <input type="text" name="message" placeholder="Type here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
